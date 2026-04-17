@@ -1,408 +1,84 @@
-/* styles.css - Diseño moderno, tonos naranjas, animaciones suaves */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODS 2 · Hambre Cero - ODS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="app-wrapper">
+    <header class="main-header">
+        <div class="logo-area"><i class="fas fa-utensils"></i><h1>Hambre Cero · ODS 2</h1></div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="ods.html" class="nav-link">ODS</a></li>
+                <li><a href="quienes.html" class="nav-link">Quiénes somos</a></li>
+                <li><a href="acerca.html" class="nav-link">Acerca de</a></li>
+            </ul>
+        </nav>
+        <button id="darkModeToggle" class="dark-btn"><i class="fas fa-moon"></i> Modo oscuro</button>
+    </header>
+    <main class="page-content fade-in">
+        <section class="hero-section" style="background:var(--accent-light);">
+            <div>
+                <span class="badge">Objetivo 2 · Hambre Cero</span>
+                <h2>¿Qué es el ODS 2?</h2>
+                <p>Poner fin al hambre, lograr la seguridad alimentaria, mejorar la nutrición y promover la agricultura sostenible para 2030.</p>
+            </div>
+            <div class="hero-img">
+                <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?w=500&auto=format" class="hover-scale-img" alt="ODS">
+            </div>
+        </section>
 
-:root {
-    --bg-primary: #fffaf5;
-    --bg-card: #ffffff;
-    --text-primary: #2c2b2a;
-    --text-secondary: #5a4a3a;
-    --accent-orange: #e67e22;
-    --accent-darkorange: #d35400;
-    --accent-light: #fdf0e0;
-    --header-bg: #ffffffdd;
-    --shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
-    --border-color: #ffd8b5;
-    --footer-bg: #2c3e2f;
-    --footer-text: #f9e7d4;
-}
+        <div class="marquee-wrapper">
+            <div class="marquee"><span>🌽 Meta: hambre cero en 2030 · Derecho a la alimentación 🌾</span></div>
+        </div>
 
-body.dark {
-    --bg-primary: #1e1b19;
-    --bg-card: #2c2824;
-    --text-primary: #f0ede8;
-    --text-secondary: #d4c9bc;
-    --accent-orange: #f39c12;
-    --accent-darkorange: #e67e22;
-    --accent-light: #3a2e26;
-    --header-bg: #2c2824cc;
-    --border-color: #7e5a41;
-    --footer-bg: #0f2c1c;
-    --footer-text: #f7d9b5;
-}
+        <div class="info-grid">
+            <div class="info-card">
+                <i class="fas fa-chart-simple"></i>
+                <h4>Indicadores clave</h4>
+                <p>Prevalencia de subalimentación, retraso del crecimiento infantil, inseguridad alimentaria moderada o grave.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-globe-americas"></i>
+                <h4>Compromiso mundial</h4>
+                <p>Países miembros de la ONU adoptaron la agenda 2030. El hambre cero es fundamental para lograr paz y prosperidad.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h4>México y ODS 2</h4>
+                <p>Políticas de abasto social, agricultura campesina y programas de nutrición escolar son clave para avanzar.</p>
+            </div>
+        </div>
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    transition: background-color 0.3s ease, color 0.2s ease;
-}
+        <button id="mensajeOds" class="btn-primary" style="margin:1rem auto; display:table;"><i class="fas fa-volume-up"></i> Dato con sonido</button>
 
-.app-wrapper {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-/* HEADER */
-.main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 1rem 0;
-    background: var(--header-bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 2px solid var(--accent-orange);
-    margin-bottom: 2rem;
-    gap: 1rem;
-}
-
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.logo-area i {
-    font-size: 2rem;
-    color: var(--accent-orange);
-}
-
-.logo-area h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-}
-
-.navbar ul {
-    display: flex;
-    gap: 1.8rem;
-    list-style: none;
-}
-
-.nav-link {
-    text-decoration: none;
-    font-weight: 600;
-    color: var(--text-primary);
-    transition: color 0.2s, border-bottom 0.2s;
-    padding-bottom: 4px;
-    border-bottom: 2px solid transparent;
-}
-
-.nav-link:hover, .nav-link.active {
-    color: var(--accent-orange);
-    border-bottom-color: var(--accent-orange);
-}
-
-.dark-btn {
-    background: var(--accent-light);
-    border: 1px solid var(--accent-orange);
-    padding: 8px 18px;
-    border-radius: 40px;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--text-primary);
-    transition: all 0.2s;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-.dark-btn:hover {
-    background: var(--accent-orange);
-    color: white;
-}
-
-/* FADE-IN ANIMATION */
-.fade-in {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+        <div class="conclusion-block">
+            <strong>Importancia:</strong> El hambre limita el desarrollo humano. Hambre Cero impulsa salud, educación e igualdad.
+        </div>
+    </main>
+    <footer class="main-footer">
+        <p>© 2025 · ODS 2 · Por un futuro sin hambre</p>
+    </footer>
+</div>
+<audio id="clickSound" preload="auto">
+    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+</audio>
+<script src="script.js"></script>
+<script>
+    const btnOds = document.getElementById('mensajeOds');
+    if(btnOds) {
+        btnOds.addEventListener('click', function() {
+            alert('Cada día 25,000 personas mueren de hambre en el mundo. ¡Es hora de actuar!');
+            const snd = document.getElementById('clickSound');
+            if(snd) { snd.currentTime = 0; snd.play(); }
+        });
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Hero section */
-.hero-section {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
-    background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-primary) 100%);
-    border-radius: 2rem;
-    padding: 2rem;
-}
-
-.hero-text {
-    flex: 1;
-}
-
-.badge {
-    background: var(--accent-orange);
-    padding: 0.3rem 1rem;
-    border-radius: 40px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: white;
-    display: inline-block;
-    margin-bottom: 1rem;
-}
-
-.hero-text h2 {
-    font-size: 2rem;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-}
-
-.hero-text p {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-}
-
-.btn-primary {
-    background: var(--accent-orange);
-    border: none;
-    padding: 12px 28px;
-    border-radius: 50px;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-    font-size: 1rem;
-}
-
-.btn-primary:hover {
-    background: var(--accent-darkorange);
-    transform: scale(1.02);
-}
-
-.hero-img img {
-    max-width: 320px;
-    width: 100%;
-    border-radius: 28px;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s, filter 0.2s;
-}
-
-.hover-scale-img:hover {
-    transform: scale(1.02) rotate(0.5deg);
-    filter: brightness(1.02);
-}
-
-/* MARQUESINA animada */
-.marquee-wrapper {
-    background: var(--accent-orange);
-    border-radius: 60px;
-    margin: 1.5rem 0;
-    overflow: hidden;
-    padding: 0.8rem 0;
-}
-
-.marquee {
-    white-space: nowrap;
-    display: inline-block;
-    animation: scrollMarquee 18s linear infinite;
-    font-weight: 600;
-    color: white;
-    font-size: 1rem;
-    padding-left: 1rem;
-}
-
-.marquee span {
-    margin-right: 3rem;
-}
-
-@keyframes scrollMarquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* counter-card */
-.counter-card {
-    background: var(--bg-card);
-    border-radius: 2rem;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border-color);
-    margin: 2rem 0;
-}
-
-.counter-display span {
-    font-size: 4rem;
-    font-weight: 800;
-    color: var(--accent-orange);
-    background: var(--accent-light);
-    padding: 0.2rem 1.2rem;
-    border-radius: 80px;
-    display: inline-block;
-    margin: 0.5rem 0;
-}
-
-.btn-outline {
-    background: transparent;
-    border: 2px solid var(--accent-orange);
-    padding: 8px 20px;
-    border-radius: 40px;
-    font-weight: bold;
-    color: var(--accent-orange);
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.btn-outline:hover {
-    background: var(--accent-orange);
-    color: white;
-}
-
-/* slider */
-.slider-section {
-    margin: 2rem 0;
-}
-
-.slider-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.slider-track {
-    display: flex;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    width: 80%;
-    border-radius: 28px;
-    box-shadow: var(--shadow);
-}
-
-.slide {
-    min-width: 100%;
-    transition: transform 0.3s;
-}
-
-.slide img {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    display: block;
-}
-
-.slider-btn {
-    background: var(--accent-orange);
-    border: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 60px;
-    color: white;
-    cursor: pointer;
-    font-size: 1.4rem;
-    transition: 0.2s;
-}
-
-.slider-btn:hover {
-    background: var(--accent-darkorange);
-    transform: scale(1.05);
-}
-
-.slider-dots {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 1rem 0;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    background: #ccc;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.dot.active {
-    background: var(--accent-orange);
-    width: 28px;
-}
-
-/* info grid */
-.info-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.info-card {
-    flex: 1;
-    background: var(--bg-card);
-    padding: 1.5rem;
-    border-radius: 1.8rem;
-    box-shadow: var(--shadow);
-    border-left: 6px solid var(--accent-orange);
-    transition: all 0.25s;
-}
-
-.info-card i {
-    font-size: 2rem;
-    color: var(--accent-orange);
-    margin-bottom: 0.8rem;
-}
-
-.info-card h4 {
-    font-size: 1.4rem;
-    margin-bottom: 0.6rem;
-}
-
-.conclusion-block {
-    background: var(--accent-light);
-    padding: 1.5rem;
-    border-radius: 2rem;
-    margin: 2rem 0;
-    text-align: center;
-    font-size: 1.1rem;
-}
-
-/* footer */
-.main-footer {
-    background: var(--footer-bg);
-    color: var(--footer-text);
-    padding: 1.5rem;
-    border-radius: 2rem 2rem 0 0;
-    text-align: center;
-    margin-top: 2rem;
-}
-
-/* Responsive */
-@media (max-width: 780px) {
-    .navbar ul {
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-    .hero-section {
-        flex-direction: column;
-        text-align: center;
-    }
-    .slider-track {
-        width: 100%;
-    }
-    .slider-btn {
-        width: 36px;
-        height: 36px;
-    }
-}
+</script>
+</body>
+</html>

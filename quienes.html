@@ -1,162 +1,90 @@
-// script.js - interactividad global: modo oscuro, contador, sonido, carrusel, mensaje, marquesina (ya funciona con CSS)
-document.addEventListener('DOMContentLoaded', () => {
-    // ---------- MODO OSCURO ----------
-    const darkToggle = document.getElementById('darkModeToggle');
-    if (darkToggle) {
-        // Comprobar preferencia guardada
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.body.classList.add('dark');
-        }
-        darkToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-            if (document.body.classList.contains('dark')) {
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-            }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiénes somos · Equipo Hambre Cero</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="app-wrapper">
+    <header class="main-header">
+        <div class="logo-area"><i class="fas fa-utensils"></i><h1>Hambre Cero · ODS 2</h1></div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="ods.html" class="nav-link">ODS</a></li>
+                <li><a href="quienes.html" class="nav-link">Quiénes somos</a></li>
+                <li><a href="acerca.html" class="nav-link">Acerca de</a></li>
+            </ul>
+        </nav>
+        <button id="darkModeToggle" class="dark-btn"><i class="fas fa-moon"></i> Modo oscuro</button>
+    </header>
+    <main class="page-content fade-in">
+        <section class="hero-section" style="text-align:center; justify-content:center;">
+            <div class="hero-text">
+                <span class="badge">🌟 Equipo comprometido</span>
+                <h2>Conoce a las personas detrás de este proyecto</h2>
+                <p>Estudiantes apasionadas por la seguridad alimentaria y los ODS</p>
+            </div>
+        </section>
+
+        <div class="marquee-wrapper">
+            <div class="marquee"><span>🤝 Trabajo en equipo por un futuro sin hambre · ODS 2 🤝</span></div>
+        </div>
+
+        <div class="info-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px,1fr));">
+            <div class="info-card" style="text-align:center;">
+                <i class="fas fa-user-circle" style="font-size:3rem;"></i>
+                <h4>Mariné Valdes Equino</h4>
+                <p>Coordinadora de investigación · Enfocada en políticas alimentarias.</p>
+            </div>
+            <div class="info-card" style="text-align:center;">
+                <i class="fas fa-user-circle" style="font-size:3rem;"></i>
+                <h4>Nancy Contreras Ortega</h4>
+                <p>Especialista en nutrición comunitaria y desarrollo sostenible.</p>
+            </div>
+            <div class="info-card" style="text-align:center;">
+                <i class="fas fa-user-circle" style="font-size:3rem;"></i>
+                <h4>Ximena Camarillo Hernández</h4>
+                <p>Diseño de estrategias de concientización y alcance digital.</p>
+            </div>
+            <div class="info-card" style="text-align:center;">
+                <i class="fas fa-user-circle" style="font-size:3rem;"></i>
+                <h4>Karen Hernández Eliza Ragas</h4>
+                <p>Gestión de alianzas y proyectos comunitarios.</p>
+            </div>
+        </div>
+
+        <div class="counter-card">
+            <h3><i class="fas fa-heart"></i> Nuestra motivación</h3>
+            <p>Creemos que un mundo sin hambre es posible. Por eso trabajamos para informar, inspirar y movilizar acciones.</p>
+            <button id="equipoBtn" class="btn-primary"><i class="fas fa-star"></i> Mensaje del equipo</button>
+        </div>
+
+        <div class="conclusion-block">
+            <strong>✨ Compromiso colectivo:</strong> Juntas, promovemos el ODS 2 desde la educación, la divulgación y el impulso a políticas públicas justas.
+        </div>
+    </main>
+    <footer class="main-footer">
+        <p>© 2025 · Proyecto ODS 2 Hambre Cero · #HambreCero</p>
+    </footer>
+</div>
+<audio id="clickSound" preload="auto">
+    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+</audio>
+<script src="script.js"></script>
+<script>
+    const equipoBtn = document.getElementById('equipoBtn');
+    if(equipoBtn) {
+        equipoBtn.addEventListener('click', () => {
+            alert('"El hambre cero comienza con pequeñas acciones locales. Somos Mariné, Nancy, Ximena y Karen, comprometidas con este cambio."');
+            const audio = document.getElementById('clickSound');
+            if(audio) { audio.currentTime = 0; audio.play(); }
         });
     }
-
-    // ---------- CONTADOR DINÁMICO ----------
-    let counter = localStorage.getItem('hambreContador') ? parseInt(localStorage.getItem('hambreContador')) : 0;
-    const contadorSpan = document.getElementById('contadorNumero');
-    const incrementBtn = document.getElementById('incrementBtn');
-    if (contadorSpan && incrementBtn) {
-        contadorSpan.innerText = counter;
-        incrementBtn.addEventListener('click', () => {
-            counter++;
-            contadorSpan.innerText = counter;
-            localStorage.setItem('hambreContador', counter);
-            // Reproducir sonido al hacer clic en contador (opcional pero cumple sonido)
-            playClickSound();
-        });
-    }
-
-    // ---------- BOTÓN INTERACTIVO MENSAJE ----------
-    const mensajeBtn = document.getElementById('mensajeBtn');
-    if (mensajeBtn) {
-        mensajeBtn.addEventListener('click', () => {
-            alert('🌱 "El hambre no es un problema de escasez, es un problema de acceso y justicia. Cada acción cuenta para lograr Hambre Cero." — Mariné, Nancy, Ximena, Karen');
-            playClickSound(); // sonido al hacer clic en este botón
-        });
-    }
-
-    // ---------- SONIDO (archivo mp3) ----------
-    // Creamos una función que reproduce el audio del elemento #clickSound
-    function playClickSound() {
-        const audio = document.getElementById('clickSound');
-        if (audio) {
-            // Reiniciar si ya suena
-            audio.currentTime = 0;
-            audio.play().catch(e => console.log("Error de reproducción automática:", e));
-        } else {
-            // fallback por si no existe (por si no se cargo)
-            console.warn("Elemento audio no encontrado");
-        }
-    }
-
-    // También agregar sonido al botón del modo oscuro? No obligatorio, pero añadimos al dar clic en sumar apoyo y mensaje.
-    // Se puede incluir sonido adicional en botones ODS, pero ya está en los principales.
-
-    // ---------- CARRUSEL (SLIDER) ----------
-    const track = document.getElementById('sliderTrack');
-    const prevBtn = document.getElementById('prevSlide');
-    const nextBtn = document.getElementById('nextSlide');
-    const dotsContainer = document.getElementById('sliderDots');
-    let currentIndex = 0;
-    let slides = [];
-    let totalSlides = 0;
-
-    function initSlider() {
-        if (!track) return;
-        slides = Array.from(track.children);
-        totalSlides = slides.length;
-        if (totalSlides === 0) return;
-        // Generar dots
-        if (dotsContainer) {
-            dotsContainer.innerHTML = '';
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(i));
-                dotsContainer.appendChild(dot);
-            }
-        }
-        updateSlider();
-    }
-
-    function updateSlider() {
-        if (!track) return;
-        const slideWidth = slides[0]?.getBoundingClientRect().width;
-        if (!slideWidth) return;
-        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-        // Actualizar dots
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, idx) => {
-            if (idx === currentIndex) dot.classList.add('active');
-            else dot.classList.remove('active');
-        });
-    }
-
-    function goToSlide(index) {
-        if (index < 0) index = totalSlides - 1;
-        if (index >= totalSlides) index = 0;
-        currentIndex = index;
-        updateSlider();
-    }
-
-    function nextSlide() {
-        goToSlide(currentIndex + 1);
-    }
-
-    function prevSlide() {
-        goToSlide(currentIndex - 1);
-    }
-
-    if (prevBtn && nextBtn && track) {
-        prevBtn.addEventListener('click', () => { prevSlide(); playClickSound(); });
-        nextBtn.addEventListener('click', () => { nextSlide(); playClickSound(); });
-        window.addEventListener('resize', () => updateSlider());
-        initSlider();
-        // Actualizar posición al redimensionar
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => updateSlider(), 150);
-        });
-    }
-
-    // También añadimos sonido a otros botones interactivos que pudieran existir en otras páginas (pero garantizamos)
-    // Aseguramos que en ods.html y quienes.html haya al menos botones de prueba? Para que el sitio tenga sonido también, pero ya el botón de mensaje y contador están. Además podríamos poner un botón extra? Ya cumplimos.
-    
-    // Marquesina automática con CSS, animación fade-in ya aplicada en el main.
-    // Efectos hover imágenes ya en CSS.
-
-    // ----- Información de página activa en menú (resaltar) -----
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPage) {
-            link.classList.add('active');
-        } else if (currentPage === '' && href === 'index.html') {
-            link.classList.add('active');
-        }
-    });
-    
-    // Adicional: si estamos en quienes.html, mostrar nombres del equipo mediante un script específico pero ya en el contenido estático se pondrán en esa página.
-    // Para que "Quiénes somos" muestre el equipo con nombres solicitados, lo incluiremos directamente en el HTML de quienes.html (a continuación se crean las otras páginas).
-    // Pero como hemos creado solo index.html por ahora, para cumplir el sitio completo de 4 páginas debemos generar ods.html, quienes.html y acerca.html con la misma estructura.
-    // Como el usuario pide "Crea un sitio web completo sobre el ODS 2 utilizando HTML, CSS y JavaScript", todos los archivos deben ser generados. Proporcionaré los 4 HTML completos.
-    // Voy a construir las siguientes páginas y las incluiré en la respuesta final. Pero debo enviar todo junto en una respuesta única.
-    // Nota: para no extender demasiado, escribiré ods.html, quienes.html y acerca.html con la misma plantilla compartiendo el menú y contenido específico.
-    // Pero el código final debe tener todos los archivos. El asistente puede mostrar 4 bloques de código separados? Mejor genero cada archivo con su contenido.
-    // Ya que estamos en la misma respuesta, mostraré los 4 archivos HTML + CSS + JS. Para ello debo ahora proporcionar el contenido de ods.html, quienes.html, acerca.html.
-    // A continuación escribiré esos archivos, cada uno con su estructura principal pero reutilizando el mismo CSS y JS.
-});
-
-// NOTA: El código JS anterior es global y se ejecuta en todas las páginas.
-// Para quienes.html, se requiere mostrar los nombres del equipo, eso irá en el HTML correspondiente.
-// A continuación proporcionaré los 4 archivos HTML completos. Ya tenemos index.html arriba, falta ods.html, quienes.html, acerca.html.
-// Se adjuntarán en la respuesta final, con enlaces correctos.
+</script>
+</body>
+</html>

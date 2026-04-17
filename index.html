@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ODS 2 · Hambre Cero</title>
+    <!-- Estilos externos -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Preconnect para fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <!-- ENCABEZADO COMÚN + NAVEGACIÓN -->
+        <header class="main-header">
+            <div class="logo-area">
+                <i class="fas fa-utensils"></i>
+                <h1>Hambre Cero · ODS 2</h1>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li><a href="ods.html" class="nav-link">ODS</a></li>
+                    <li><a href="quienes.html" class="nav-link">Quiénes somos</a></li>
+                    <li><a href="acerca.html" class="nav-link">Acerca de</a></li>
+                </ul>
+            </nav>
+            <button id="darkModeToggle" class="dark-btn" aria-label="Modo oscuro"><i class="fas fa-moon"></i> Modo oscuro</button>
+        </header>
+
+        <!-- CONTENIDO PRINCIPAL (cambia por página, pero inyectado por JS dinámico? No, usamos navegación real en archivos separados. 
+        Pero hemos creado 4 HTML. Cada uno tendrá su sección principal. Para no repetir 4 veces todo, haremos que cada HTML tenga su propio main, 
+        pero compartiendo CSS/JS. Usaremos el mismo script con condicional? mejor: en cada HTML se carga el mismo JS que maneja elementos comunes (modo oscuro, contador, marquesina, slider, sonido, boton msg).
+        Pero cuidado: algunas páginas no tendrán slider? Para cumplir con el requerimiento, al menos la página de Inicio incluirá el carrusel. En ods.html pondremos otro? pero garantizamos que el sitio completo tiene carrusel. 
+        Decido: index.html contiene carrusel, contador, botón msg y marquesina. ods.html también puede tenerlos pero por simplicidad el slider solo en inicio. 
+        Sin embargo el enunciado: "Un carrusel de imágenes (slider) funcional con JavaScript" debe existir en el sitio. Lo pondré en index.html.
+        Además sonido al hacer clic en algún botón interactivo (lo pondré en un botón específico "Escuchar dato" o "clic sonido"). 
+        Marquesina animada, contador dinámico, modo oscuro global, animaciones fade-in.
+        -->
+        <main class="page-content fade-in">
+            <!-- INICIO: Contenido principal de index.html (se ve solo en esta página) -->
+            <section class="hero-section">
+                <div class="hero-text">
+                    <span class="badge">Objetivo de Desarrollo Sostenible 2</span>
+                    <h2>Poner fin al hambre, lograr la seguridad alimentaria y mejorar la nutrición</h2>
+                    <p>Un futuro sostenible comienza por erradicar el hambre y garantizar el acceso a alimentos nutritivos para todos.</p>
+                    <button id="mensajeBtn" class="btn-primary"><i class="fas fa-comment"></i> Mensaje inspirador</button>
+                </div>
+                <div class="hero-img">
+                    <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=500&auto=format" alt="Agricultura sostenible" class="hover-scale-img">
+                </div>
+            </section>
+
+            <!-- MARQUESINA (texto en movimiento animado con CSS) -->
+            <div class="marquee-wrapper">
+                <div class="marquee">
+                    <span>🌾 Cada persona tiene derecho a una alimentación adecuada · ODS 2 Hambre Cero 🌽 · 811 millones de personas sufren hambre en el mundo · Actuemos ya 🍅</span>
+                </div>
+            </div>
+
+            <!-- Contador dinámico + Botón -->
+            <div class="counter-card">
+                <h3><i class="fas fa-hand-holding-heart"></i> Compromiso ciudadano</h3>
+                <p>Personas que se han sumado simbólicamente contra el hambre:</p>
+                <div class="counter-display">
+                    <span id="contadorNumero">0</span>
+                </div>
+                <button id="incrementBtn" class="btn-outline"><i class="fas fa-plus-circle"></i> Sumar apoyo</button>
+                <p class="counter-note">Haz clic para aumentar el compromiso virtual</p>
+            </div>
+
+            <!-- CARRUSEL DE IMÁGENES (SLIDER) -->
+            <div class="slider-section">
+                <h3><i class="fas fa-images"></i> Galería · Hambre Cero en acción</h3>
+                <div class="slider-container">
+                    <button class="slider-btn prev-btn" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-track" id="sliderTrack">
+                        <div class="slide"><img src="https://images.unsplash.com/photo-1593113598332-cd288d6492b0?w=600&auto=format" alt="Huertos comunitarios"></div>
+                        <div class="slide"><img src="https://images.unsplash.com/photo-1577211089777-3e77bd2f6d4a?w=600&auto=format" alt="Distribución de alimentos"></div>
+                        <div class="slide"><img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?w=600&auto=format" alt="Agricultura familiar"></div>
+                        <div class="slide"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=600&auto=format" alt="Cosecha de maíz"></div>
+                    </div>
+                    <button class="slider-btn next-btn" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="slider-dots" id="sliderDots"></div>
+            </div>
+
+            <!-- Problemática en México, Objetivos proyecto + conclusión parcial -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Problemática en México</h4>
+                    <p>México enfrenta inseguridad alimentaria moderada o grave en el 22% de su población. Millones de hogares tienen dificultades para acceder a alimentos nutritivos, y la desnutrición infantil afecta regiones indígenas y marginadas.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h4>Objetivos del proyecto</h4>
+                    <p>Concientizar sobre el hambre cero, promover agricultura sostenible, reducir el desperdicio de alimentos e impulsar políticas de distribución equitativa. Nuestra meta: informar y movilizar a la comunidad.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-seedling"></i>
+                    <h4>Conclusión clave</h4>
+                    <p>Erradicar el hambre no solo es posible, es urgente. Un mundo sin hambre mejora la salud, la educación y la estabilidad social. Invertir en soberanía alimentaria es invertir en dignidad humana.</p>
+                </div>
+            </div>
+
+            <!-- Mensaje final de importancia -->
+            <div class="conclusion-block">
+                <p><strong>🌟 Conclusión final:</strong> El hambre cero es el pilar de los demás ODS. Desde acciones locales hasta cambios globales, cada grano de apoyo cuenta. Juntos podemos construir sistemas alimentarios justos, resilientes y sostenibles.</p>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <p>© 2025 · Proyecto ODS 2 Hambre Cero · Inspirado en la Agenda 2030</p>
+            <p><i class="fas fa-leaf"></i> #HambreCero #ODS2</p>
+        </footer>
+    </div>
+
+    <!-- Elemento de audio para el sonido al hacer clic (archivo mp3 pequeño generado con base64? Para evitar externos usamos un beep simple con Web Audio? Pero el requerimiento: "Un sonido al hacer clic (archivo mp3)". Para cumplir de manera real, creamos un archivo .mp3 embedido? no podemos crear archivo físico, pero podemos usar un DataURI con sonido corto de clic o usar un archivo de ejemplo. 
+    Podemos generar un sonido usando AudioContext o usar un recurso externo de sonido gratuito. La forma más robusta: incluir un archivo .mp3 desde un CDN? pero mejor creamos un pequeño beep con Web Audio? no es .mp3. Usaremos un archivo mp3 alojado en línea válido (freesound). Incluyo un sonido de clic corto desde un repositorio de ejemplo (solo para cumplir). -->
+    <audio id="clickSound" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+
+    <!-- Script externo -->
+    <script src="script.js"></script>
+    <!-- Nota: también se incluye en ods.html, quienes.html, acerca.html; ellos compartirán modo oscuro y otros elementos dinámicos que aparezcan. Sin embargo el slider solo existe en index.html, no debe causar errores. -->
+</body>
+</html>

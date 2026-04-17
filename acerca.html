@@ -3,40 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ODS 2 · Hambre Cero - ODS</title>
+    <title>Acerca de · Hambre Cero</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <div class="app-wrapper">
     <header class="main-header">
         <div class="logo-area"><i class="fas fa-utensils"></i><h1>Hambre Cero · ODS 2</h1></div>
-        <nav class="navbar"><ul><li><a href="index.html" class="nav-link">Inicio</a></li><li><a href="ods.html" class="nav-link">ODS</a></li><li><a href="quienes.html" class="nav-link">Quiénes somos</a></li><li><a href="acerca.html" class="nav-link">Acerca de</a></li></ul></nav>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html" class="nav-link">Inicio</a></li>
+                <li><a href="ods.html" class="nav-link">ODS</a></li>
+                <li><a href="quienes.html" class="nav-link">Quiénes somos</a></li>
+                <li><a href="acerca.html" class="nav-link">Acerca de</a></li>
+            </ul>
+        </nav>
         <button id="darkModeToggle" class="dark-btn"><i class="fas fa-moon"></i> Modo oscuro</button>
     </header>
     <main class="page-content fade-in">
-        <section class="hero-section" style="background:var(--accent-light);">
-            <div><span class="badge">Objetivo 2 · Hambre Cero</span><h2>¿Qué es el ODS 2?</h2><p>Poner fin al hambre, lograr la seguridad alimentaria, mejorar la nutrición y promover la agricultura sostenible para 2030.</p></div>
-            <div class="hero-img"><img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?w=500&auto=format" class="hover-scale-img" alt="ODS"></div>
+        <section class="hero-section">
+            <div class="hero-text">
+                <span class="badge">📢 Información del proyecto</span>
+                <h2>¿Por qué este sitio web?</h2>
+                <p>Un espacio educativo para visibilizar la importancia del ODS 2 y fomentar la acción colectiva.</p>
+            </div>
+            <div class="hero-img">
+                <img src="https://images.unsplash.com/photo-1536315238512-4c8cebdaaf93?w=500&auto=format" alt="Conclusión" class="hover-scale-img">
+            </div>
         </section>
-        <div class="marquee-wrapper"><div class="marquee"><span>🌽 Meta: hambre cero en 2030 · Derecho a la alimentación 🌾</span></div></div>
-        <div class="info-grid">
-            <div class="info-card"><i class="fas fa-chart-simple"></i><h4>Indicadores clave</h4><p>Prevalencia de subalimentación, retraso del crecimiento infantil, inseguridad alimentaria moderada o grave.</p></div>
-            <div class="info-card"><i class="fas fa-globe-americas"></i><h4>Compromiso mundial</h4><p>Países miembros de la ONU adoptaron la agenda 2030. El hambre cero es fundamental para lograr paz y prosperidad.</p></div>
-            <div class="info-card"><i class="fas fa-hand-holding-heart"></i><h4>México y ODS 2</h4><p>Políticas de abasto social, agricultura campesina y programas de nutrición escolar son clave para avanzar.</p></div>
+
+        <div class="marquee-wrapper">
+            <div class="marquee"><span>🌍 Objetivo: Informar, sensibilizar y movilizar · El hambre cero es tarea de todos 🌍</span></div>
         </div>
-        <button id="mensajeOds" class="btn-primary" style="margin:1rem auto; display:table;"><i class="fas fa-volume-up"></i> Dato con sonido</button>
-        <div class="conclusion-block"><strong>Importancia:</strong> El hambre limita el desarrollo humano. Hambre Cero impulsa salud, educación e igualdad.</div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <i class="fas fa-chalkboard-user"></i>
+                <h4>Nuestra misión</h4>
+                <p>Difundir información clara y actualizada sobre el hambre en México y el mundo, promoviendo la participación ciudadana.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-chart-line"></i>
+                <h4>Datos clave</h4>
+                <p>México: 22% de inseguridad alimentaria. 4.6 millones de niños con desnutrición crónica. Urge actuar.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-seedling"></i>
+                <h4>Llamado a la acción</h4>
+                <p>Reduce el desperdicio de alimentos, apoya la agricultura local y exige políticas de distribución justa.</p>
+            </div>
+        </div>
+
+        <div class="counter-card">
+            <h3><i class="fas fa-chart-simple"></i> Conclusión final</h3>
+            <p>Erradicar el hambre es el primer paso para lograr un mundo más justo, próspero y sostenible. La educación y la acción colectiva son nuestras herramientas más poderosas.</p>
+            <button id="conclusionBtn" class="btn-primary"><i class="fas fa-bullhorn"></i> Escuchar compromiso</button>
+        </div>
+
+        <div class="conclusion-block" style="background: var(--accent-orange); color:white;">
+            <strong>🌾 "El hambre no es natural, es provocada por la desigualdad. Hagamos del Hambre Cero una realidad."</strong>
+        </div>
     </main>
-    <footer class="main-footer"><p>© 2025 · ODS 2 · Por un futuro sin hambre</p></footer>
+    <footer class="main-footer">
+        <p>© 2025 · Proyecto ODS 2 · Por un futuro sin hambre</p>
+    </footer>
 </div>
-<audio id="clickSound" preload="auto"><source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg"></audio>
+<audio id="clickSound" preload="auto">
+    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+</audio>
 <script src="script.js"></script>
 <script>
-    // Botón extra con sonido y mensaje en ODS
-    const btnOds = document.getElementById('mensajeOds');
-    if(btnOds) btnOds.addEventListener('click', ()=>{ alert('Cada día 25,000 personas mueren de hambre en el mundo. ¡Es hora de actuar!'); const snd = document.getElementById('clickSound'); if(snd){ snd.currentTime=0; snd.play(); } });
+    const conclusionBtn = document.getElementById('conclusionBtn');
+    if(conclusionBtn) {
+        conclusionBtn.addEventListener('click', () => {
+            alert('¡Gracias por informarte! Comprométete a reducir el desperdicio de alimentos y apoyar bancos de comida locales. #HambreCero');
+            const audio = document.getElementById('clickSound');
+            if(audio) { audio.currentTime = 0; audio.play(); }
+        });
+    }
 </script>
 </body>
 </html>

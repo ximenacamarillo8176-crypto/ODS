@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODS 2 · Hambre Cero - ODS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="app-wrapper">
+    <header class="main-header">
+        <div class="logo-area"><i class="fas fa-utensils"></i><h1>Hambre Cero · ODS 2</h1></div>
+        <nav class="navbar"><ul><li><a href="index.html" class="nav-link">Inicio</a></li><li><a href="ods.html" class="nav-link">ODS</a></li><li><a href="quienes.html" class="nav-link">Quiénes somos</a></li><li><a href="acerca.html" class="nav-link">Acerca de</a></li></ul></nav>
+        <button id="darkModeToggle" class="dark-btn"><i class="fas fa-moon"></i> Modo oscuro</button>
+    </header>
+    <main class="page-content fade-in">
+        <section class="hero-section" style="background:var(--accent-light);">
+            <div><span class="badge">Objetivo 2 · Hambre Cero</span><h2>¿Qué es el ODS 2?</h2><p>Poner fin al hambre, lograr la seguridad alimentaria, mejorar la nutrición y promover la agricultura sostenible para 2030.</p></div>
+            <div class="hero-img"><img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?w=500&auto=format" class="hover-scale-img" alt="ODS"></div>
+        </section>
+        <div class="marquee-wrapper"><div class="marquee"><span>🌽 Meta: hambre cero en 2030 · Derecho a la alimentación 🌾</span></div></div>
+        <div class="info-grid">
+            <div class="info-card"><i class="fas fa-chart-simple"></i><h4>Indicadores clave</h4><p>Prevalencia de subalimentación, retraso del crecimiento infantil, inseguridad alimentaria moderada o grave.</p></div>
+            <div class="info-card"><i class="fas fa-globe-americas"></i><h4>Compromiso mundial</h4><p>Países miembros de la ONU adoptaron la agenda 2030. El hambre cero es fundamental para lograr paz y prosperidad.</p></div>
+            <div class="info-card"><i class="fas fa-hand-holding-heart"></i><h4>México y ODS 2</h4><p>Políticas de abasto social, agricultura campesina y programas de nutrición escolar son clave para avanzar.</p></div>
+        </div>
+        <button id="mensajeOds" class="btn-primary" style="margin:1rem auto; display:table;"><i class="fas fa-volume-up"></i> Dato con sonido</button>
+        <div class="conclusion-block"><strong>Importancia:</strong> El hambre limita el desarrollo humano. Hambre Cero impulsa salud, educación e igualdad.</div>
+    </main>
+    <footer class="main-footer"><p>© 2025 · ODS 2 · Por un futuro sin hambre</p></footer>
+</div>
+<audio id="clickSound" preload="auto"><source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg"></audio>
+<script src="script.js"></script>
+<script>
+    // Botón extra con sonido y mensaje en ODS
+    const btnOds = document.getElementById('mensajeOds');
+    if(btnOds) btnOds.addEventListener('click', ()=>{ alert('Cada día 25,000 personas mueren de hambre en el mundo. ¡Es hora de actuar!'); const snd = document.getElementById('clickSound'); if(snd){ snd.currentTime=0; snd.play(); } });
+</script>
+</body>
+</html>

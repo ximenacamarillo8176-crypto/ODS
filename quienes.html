@@ -1,0 +1,162 @@
+// script.js - interactividad global: modo oscuro, contador, sonido, carrusel, mensaje, marquesina (ya funciona con CSS)
+document.addEventListener('DOMContentLoaded', () => {
+    // ---------- MODO OSCURO ----------
+    const darkToggle = document.getElementById('darkModeToggle');
+    if (darkToggle) {
+        // Comprobar preferencia guardada
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark');
+        }
+        darkToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            if (document.body.classList.contains('dark')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    }
+
+    // ---------- CONTADOR DINÁMICO ----------
+    let counter = localStorage.getItem('hambreContador') ? parseInt(localStorage.getItem('hambreContador')) : 0;
+    const contadorSpan = document.getElementById('contadorNumero');
+    const incrementBtn = document.getElementById('incrementBtn');
+    if (contadorSpan && incrementBtn) {
+        contadorSpan.innerText = counter;
+        incrementBtn.addEventListener('click', () => {
+            counter++;
+            contadorSpan.innerText = counter;
+            localStorage.setItem('hambreContador', counter);
+            // Reproducir sonido al hacer clic en contador (opcional pero cumple sonido)
+            playClickSound();
+        });
+    }
+
+    // ---------- BOTÓN INTERACTIVO MENSAJE ----------
+    const mensajeBtn = document.getElementById('mensajeBtn');
+    if (mensajeBtn) {
+        mensajeBtn.addEventListener('click', () => {
+            alert('🌱 "El hambre no es un problema de escasez, es un problema de acceso y justicia. Cada acción cuenta para lograr Hambre Cero." — Mariné, Nancy, Ximena, Karen');
+            playClickSound(); // sonido al hacer clic en este botón
+        });
+    }
+
+    // ---------- SONIDO (archivo mp3) ----------
+    // Creamos una función que reproduce el audio del elemento #clickSound
+    function playClickSound() {
+        const audio = document.getElementById('clickSound');
+        if (audio) {
+            // Reiniciar si ya suena
+            audio.currentTime = 0;
+            audio.play().catch(e => console.log("Error de reproducción automática:", e));
+        } else {
+            // fallback por si no existe (por si no se cargo)
+            console.warn("Elemento audio no encontrado");
+        }
+    }
+
+    // También agregar sonido al botón del modo oscuro? No obligatorio, pero añadimos al dar clic en sumar apoyo y mensaje.
+    // Se puede incluir sonido adicional en botones ODS, pero ya está en los principales.
+
+    // ---------- CARRUSEL (SLIDER) ----------
+    const track = document.getElementById('sliderTrack');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const dotsContainer = document.getElementById('sliderDots');
+    let currentIndex = 0;
+    let slides = [];
+    let totalSlides = 0;
+
+    function initSlider() {
+        if (!track) return;
+        slides = Array.from(track.children);
+        totalSlides = slides.length;
+        if (totalSlides === 0) return;
+        // Generar dots
+        if (dotsContainer) {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+        updateSlider();
+    }
+
+    function updateSlider() {
+        if (!track) return;
+        const slideWidth = slides[0]?.getBoundingClientRect().width;
+        if (!slideWidth) return;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        // Actualizar dots
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, idx) => {
+            if (idx === currentIndex) dot.classList.add('active');
+            else dot.classList.remove('active');
+        });
+    }
+
+    function goToSlide(index) {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        currentIndex = index;
+        updateSlider();
+    }
+
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        goToSlide(currentIndex - 1);
+    }
+
+    if (prevBtn && nextBtn && track) {
+        prevBtn.addEventListener('click', () => { prevSlide(); playClickSound(); });
+        nextBtn.addEventListener('click', () => { nextSlide(); playClickSound(); });
+        window.addEventListener('resize', () => updateSlider());
+        initSlider();
+        // Actualizar posición al redimensionar
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => updateSlider(), 150);
+        });
+    }
+
+    // También añadimos sonido a otros botones interactivos que pudieran existir en otras páginas (pero garantizamos)
+    // Aseguramos que en ods.html y quienes.html haya al menos botones de prueba? Para que el sitio tenga sonido también, pero ya el botón de mensaje y contador están. Además podríamos poner un botón extra? Ya cumplimos.
+    
+    // Marquesina automática con CSS, animación fade-in ya aplicada en el main.
+    // Efectos hover imágenes ya en CSS.
+
+    // ----- Información de página activa en menú (resaltar) -----
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPage) {
+            link.classList.add('active');
+        } else if (currentPage === '' && href === 'index.html') {
+            link.classList.add('active');
+        }
+    });
+    
+    // Adicional: si estamos en quienes.html, mostrar nombres del equipo mediante un script específico pero ya en el contenido estático se pondrán en esa página.
+    // Para que "Quiénes somos" muestre el equipo con nombres solicitados, lo incluiremos directamente en el HTML de quienes.html (a continuación se crean las otras páginas).
+    // Pero como hemos creado solo index.html por ahora, para cumplir el sitio completo de 4 páginas debemos generar ods.html, quienes.html y acerca.html con la misma estructura.
+    // Como el usuario pide "Crea un sitio web completo sobre el ODS 2 utilizando HTML, CSS y JavaScript", todos los archivos deben ser generados. Proporcionaré los 4 HTML completos.
+    // Voy a construir las siguientes páginas y las incluiré en la respuesta final. Pero debo enviar todo junto en una respuesta única.
+    // Nota: para no extender demasiado, escribiré ods.html, quienes.html y acerca.html con la misma plantilla compartiendo el menú y contenido específico.
+    // Pero el código final debe tener todos los archivos. El asistente puede mostrar 4 bloques de código separados? Mejor genero cada archivo con su contenido.
+    // Ya que estamos en la misma respuesta, mostraré los 4 archivos HTML + CSS + JS. Para ello debo ahora proporcionar el contenido de ods.html, quienes.html, acerca.html.
+    // A continuación escribiré esos archivos, cada uno con su estructura principal pero reutilizando el mismo CSS y JS.
+});
+
+// NOTA: El código JS anterior es global y se ejecuta en todas las páginas.
+// Para quienes.html, se requiere mostrar los nombres del equipo, eso irá en el HTML correspondiente.
+// A continuación proporcionaré los 4 archivos HTML completos. Ya tenemos index.html arriba, falta ods.html, quienes.html, acerca.html.
+// Se adjuntarán en la respuesta final, con enlaces correctos.
